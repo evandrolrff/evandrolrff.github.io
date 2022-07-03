@@ -1,5 +1,5 @@
 import './home.css';
-import img from '../props/logo192.png';
+import img from '../props/img4.png';
 
 import React from 'react';
 
@@ -9,17 +9,6 @@ function Home() {
     return (
         <div id='home' className='container home-container'>
             <div className='logo'>
-                <div className='main-img'>
-                    <span className='circle'></span>
-                    <span className='circle'></span>
-                    <span className='circle'></span>
-                    <span className='circle'></span>
-                    <span className='circle'></span>
-                    <span className='circle'></span>
-                    <span className='circle'></span>
-                    <span className='circle'></span>
-                </div>
-
                 <img src={img} alt='' />
             </div>
 
@@ -32,17 +21,9 @@ function Home() {
 
             <h2>
                 <span>About Me</span> <br />
-                <p> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius quae pariatur illum nam quo at voluptate, totam laudantium consequatur earum expedita ullam aliquam labore dicta iusto odit esse quod libero.</p>
+                <p> Master in Computer Science by the Graduate Program in Computer Science (PPGCC/UFSM) and Bachelor in Information Systems. My lines of research are data mining, artificial intelligence, and software engineering. And areas of interest: Machine Learning, Data Mining, Front-End, Back-End, and Mobile Development.</p>
             </h2>
-
-            {/* <Buttons /> */}
         </div>
     );
 }
-
-// const toggle = document.querySelector('.main-img');
-// toggle.addEventListener('click', () => {
-//     toggle.classList.toggle('active');
-// });
-
 export default Home;
