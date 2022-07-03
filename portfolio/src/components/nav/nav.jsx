@@ -3,7 +3,7 @@ import './nav.css';
 import React from 'react';
 import {AiOutlineHome} from 'react-icons/ai';
 import {AiOutlineUser} from 'react-icons/ai';
-import {TiGroupOutline} from 'react-icons/ti';
+import {AiOutlineGithub} from 'react-icons/ai';
 import {BiMessageRoundedDots} from 'react-icons/bi';
 import {BsArrowDownCircle} from 'react-icons/bs';
 
@@ -11,13 +11,13 @@ function Navbar(){
     return(
         <div className='navigation'>
             <a href='#home'>
-                <AiOutlineHome className='icon active-nav' />
+                <AiOutlineHome className='icon' />
             </a>
             <a href='#about'>
                 <AiOutlineUser className='icon' />
             </a>
-            <a href='#members'>
-                <TiGroupOutline className='icon' />
+            <a href='#projects'>
+                <AiOutlineGithub className='icon' />
             </a>
             <a href='#contact'>
                 <BiMessageRoundedDots className='icon' />
@@ -28,19 +28,5 @@ function Navbar(){
         </div>
     );
 }
-
-// let Icons = document.querySelectorAll('.navigation .icon');
-// Icons.forEach(icon => {
-//     icon.addEventListener('click', () => {
-//         changeactive();
-//         icon.classList.add('active-nav');
-//     });
-// });
-
-// function changeactive() {
-//     Icons.forEach(icon => {
-//         icon.classList.remove('active-nav');
-//     });
-// }
 
 export default Navbar;

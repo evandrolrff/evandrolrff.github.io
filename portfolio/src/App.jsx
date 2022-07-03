@@ -6,7 +6,7 @@ import Home from "./components/home/home";
 
 import About from "./components/about/about";
 
-import Members from "./components/members/members";
+import Projects from "./components/projects/projects";
 
 import Contact from "./components/contact/contact";
 
@@ -23,7 +23,7 @@ function WebContent() {
             <Navbar />
             <Home />
             <About />
-            <Members />
+            <Projects />
             <Contact />
             <Footer />
         </>
