@@ -10,15 +10,15 @@ function Contact(){
             <h1>Contact me</h1>
             <div className='contact-links'>
                 
-                <a href='' className='contact linkedin'>
+                <a href='https://www.linkedin.com/in/evandro-luis-rosa-fensterseifer-filho-912919208/' className='contact linkedin' target="_blank">
                     <AiOutlineLinkedin className='icon' />
                 </a>
 
-                <a href='' className='contact lattes'>
+                <a href='http://lattes.cnpq.br/9397689282024193' className='contact lattes' target="_blank">
                     <MdOutlineSchool className='icon' />
                 </a>
 
-                <a href='' className='contact github'>
+                <a href='https://github.com/evandrolrff' className='contact github' target="_blank">
                     <AiFillGithub className='icon' />
                 </a>
 
