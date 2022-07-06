@@ -1,5 +1,4 @@
 import "./footer.css";
-import React from 'react';
 import { BsMouse } from "react-icons/bs";
 
 function Footer() {

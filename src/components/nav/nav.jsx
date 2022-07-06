@@ -1,6 +1,4 @@
 import './nav.css';
-
-import React from 'react';
 import {AiOutlineHome} from 'react-icons/ai';
 import {AiOutlineUser} from 'react-icons/ai';
 import {AiOutlineGithub} from 'react-icons/ai';

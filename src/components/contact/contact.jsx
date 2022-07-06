@@ -1,5 +1,4 @@
 import './contact.css';
-import React from 'react';
 import { AiOutlineLinkedin } from 'react-icons/ai';
 import { AiFillGithub } from 'react-icons/ai';
 import { MdOutlineSchool } from 'react-icons/md';
@@ -10,15 +9,15 @@ function Contact(){
             <h1>Contact me</h1>
             <div className='contact-links'>
                 
-                <a href='https://www.linkedin.com/in/evandro-luis-rosa-fensterseifer-filho-912919208/' className='contact linkedin' target="_blank">
+                <a href='https://www.linkedin.com/in/evandro-luis-rosa-fensterseifer-filho-912919208/' className='contact linkedin' target="_blank" rel="noreferrer">
                     <AiOutlineLinkedin className='icon' />
                 </a>
 
-                <a href='http://lattes.cnpq.br/9397689282024193' className='contact lattes' target="_blank">
+                <a href='http://lattes.cnpq.br/9397689282024193' className='contact lattes' target="_blank" rel="noreferrer">
                     <MdOutlineSchool className='icon' />
                 </a>
 
-                <a href='https://github.com/evandrolrff' className='contact github' target="_blank">
+                <a href='https://github.com/evandrolrff' className='contact github' target="_blank" rel="noreferrer">
                     <AiFillGithub className='icon' />
                 </a>
 

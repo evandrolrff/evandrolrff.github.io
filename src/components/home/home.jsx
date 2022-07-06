@@ -1,8 +1,6 @@
 import './home.css';
 import img from '../props/img4.png';
 
-import React from 'react';
-
 import { BsMouse } from 'react-icons/bs';
 
 function Home() {

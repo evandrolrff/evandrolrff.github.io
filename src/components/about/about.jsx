@@ -1,5 +1,4 @@
 import './about.css';
-import React from 'react';
 import Qualification from '../qualifications/qualifications';
 
 function About(){

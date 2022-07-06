@@ -1,5 +1,4 @@
 import './qualifications.css';
-import React from 'react';
 
 const Qualification = () => {
     return (
