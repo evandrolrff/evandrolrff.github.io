@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { bio, stats, socials } from '../data'
+import { bio, stats } from '../data'
 </script>
 
 <template>

@@ -8,7 +8,7 @@ export interface SkillGroup { category: string; items: string[] }
 export interface ResearchArea { title: string; description: string; keywords: string[] }
 export interface Publication { title: string; venue: string; year: string; url?: string }
 export interface FAQ { question: string; answer: string }
-export interface Social { label: string; url: string; handle?: string }
+export interface Social { icon: string; label: string; url: string; handle?: string }
 
 // ─── Bio ─────────────────────────────────────────────────────────
 
@@ -195,7 +195,7 @@ export const faqs: FAQ[] = [
 // ─── Socials ─────────────────────────────────────────────────────
 
 export const socials: Social[] = [
-  { label: 'LinkedIn', url: 'https://www.linkedin.com/in/evandro-luis-rosa-fensterseifer-filho-912919208/', handle: 'evandrolrff' },
-  { label: 'GitHub',   url: 'https://github.com/evandrolrff', handle: 'evandrolrff' },
-  { label: 'Lattes',   url: 'http://lattes.cnpq.br/9397689282024193', handle: 'CNPq Lattes' },
+  { icon: '', label: 'LinkedIn', url: 'https://www.linkedin.com/in/evandro-luis-rosa-fensterseifer-filho-912919208/', handle: 'evandrolrff' },
+  { icon: '', label: 'GitHub',   url: 'https://github.com/evandrolrff', handle: 'evandrolrff' },
+  { icon: '', label: 'Lattes',   url: 'http://lattes.cnpq.br/9397689282024193', handle: 'CNPq Lattes' },
 ]
