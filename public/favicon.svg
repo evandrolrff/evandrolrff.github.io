@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <rect width="32" height="32" rx="5.5" fill="#0A0A0A"/>
+  <rect x="0.75" y="0.75" width="30.5" height="30.5" rx="5" fill="none" stroke="#F97316" stroke-width="1.5"/>
+  <text x="16" y="22.5" text-anchor="middle"
+        font-family="'Syne', system-ui, sans-serif"
+        font-size="15" font-weight="700"
+        fill="#F97316" letter-spacing="0.5">EF</text>
+</svg>
