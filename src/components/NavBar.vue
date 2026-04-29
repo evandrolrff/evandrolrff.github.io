@@ -1,26 +1,31 @@
 <script setup lang="ts">
-import { ref, onMounted, onUnmounted } from 'vue'
+import { ref, onMounted, onUnmounted, computed } from 'vue'
+import { useI18n, setLocale } from '../i18n'
 import { bio } from '../data'
+
+const { t, locale } = useI18n()
 
 const scrolled = ref(false)
 const active = ref('home')
 const menuOpen = ref(false)
 
-const links = [
-  { id: 'home',       label: 'Home' },
-  { id: 'experience', label: 'Experience' },
-  { id: 'research',   label: 'Research' },
-  { id: 'skills',     label: 'Skills' },
-  { id: 'projects',   label: 'Projects' },
-  { id: 'contact',    label: 'Contact' },
-]
+const sectionIds = ['home', 'experience', 'research', 'skills', 'projects', 'contact']
+
+const links = computed(() => sectionIds.map(id => ({
+  id,
+  label: t.value.nav[id as keyof typeof t.value.nav] as string,
+})))
 
 function onScroll() {
   scrolled.value = window.scrollY > 20
-  for (const l of [...links].reverse()) {
-    const el = document.getElementById(l.id)
-    if (el && window.scrollY >= el.offsetTop - 140) { active.value = l.id; break }
+  for (const l of [...sectionIds].reverse()) {
+    const el = document.getElementById(l)
+    if (el && window.scrollY >= el.offsetTop - 140) { active.value = l; break }
   }
+}
+
+function toggleLang() {
+  setLocale(locale.value === 'en' ? 'pt' : 'en')
 }
 
 onMounted(() => window.addEventListener('scroll', onScroll, { passive: true }))
@@ -30,10 +35,8 @@ onUnmounted(() => window.removeEventListener('scroll', onScroll))
 <template>
   <header :class="['navbar', { scrolled }]">
     <div class="container nav-inner">
-      <!-- Logo -->
       <a href="#home" class="logo">{{ bio.monogram }}</a>
 
-      <!-- Desktop nav -->
       <nav class="nav-links">
         <a
           v-for="l in links" :key="l.id"
@@ -42,16 +45,29 @@ onUnmounted(() => window.removeEventListener('scroll', onScroll))
         >{{ l.label }}</a>
       </nav>
 
-      <!-- CTA -->
-      <a href="#contact" class="btn btn-primary nav-cta">Let's Talk</a>
+      <div class="nav-right">
+        <!-- Language toggle -->
+        <button class="lang-toggle" @click="toggleLang" :title="locale === 'en' ? 'Switch to Portuguese' : 'Mudar para Inglês'">
+          <span :class="['lang-opt', { active: locale === 'en' }]">EN</span>
+          <span class="lang-sep">/</span>
+          <span :class="['lang-opt', { active: locale === 'pt' }]">PT</span>
+        </button>
 
-      <!-- Mobile hamburger -->
-      <button class="hamburger" @click="menuOpen = !menuOpen" :aria-expanded="menuOpen">
-        <span></span><span></span><span></span>
-      </button>
+        <a href="#contact" class="btn btn-primary nav-cta">{{ t.nav.cta }}</a>
+      </div>
+
+      <div class="mobile-right">
+        <button class="lang-toggle" @click="toggleLang">
+          <span :class="['lang-opt', { active: locale === 'en' }]">EN</span>
+          <span class="lang-sep">/</span>
+          <span :class="['lang-opt', { active: locale === 'pt' }]">PT</span>
+        </button>
+        <button class="hamburger" @click="menuOpen = !menuOpen" :aria-expanded="menuOpen">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
     </div>
 
-    <!-- Mobile menu -->
     <div :class="['mobile-menu', { open: menuOpen }]">
       <a
         v-for="l in links" :key="l.id"
@@ -59,7 +75,9 @@ onUnmounted(() => window.removeEventListener('scroll', onScroll))
         :class="['mobile-link', { active: active === l.id }]"
         @click="menuOpen = false"
       >{{ l.label }}</a>
-      <a href="#contact" class="btn btn-primary" @click="menuOpen = false" style="margin-top:0.5rem;justify-content:center;">Let's Talk</a>
+      <a href="#contact" class="btn btn-primary" @click="menuOpen = false" style="margin-top:0.5rem;justify-content:center;">
+        {{ t.nav.cta }}
+      </a>
     </div>
   </header>
 </template>
@@ -116,15 +134,51 @@ onUnmounted(() => window.removeEventListener('scroll', onScroll))
 .nav-link:hover { color: var(--ink); background: var(--bg-3); }
 .nav-link.active { color: var(--orange); }
 
-.nav-cta { margin-left: auto; }
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-left: auto;
+}
+
+/* Language toggle */
+.lang-toggle {
+  display: flex;
+  align-items: center;
+  gap: 0.2rem;
+  background: var(--bg-2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 0.3rem 0.6rem;
+  cursor: pointer;
+  transition: border-color var(--transition);
+}
+.lang-toggle:hover { border-color: rgba(249,115,22,0.4); }
+
+.lang-opt {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  color: var(--ink-3);
+  transition: color var(--transition);
+  padding: 0.1rem 0.2rem;
+}
+.lang-opt.active { color: var(--orange); }
+
+.lang-sep {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  color: var(--ink-4);
+}
 
 /* Hamburger */
 .hamburger {
-  display: none;
+  display: flex;
   flex-direction: column;
   gap: 5px;
   background: none; border: none; cursor: pointer;
-  padding: 4px; margin-left: auto;
+  padding: 4px;
 }
 .hamburger span {
   display: block; width: 22px; height: 1.5px;
@@ -132,10 +186,15 @@ onUnmounted(() => window.removeEventListener('scroll', onScroll))
   transition: var(--transition);
 }
 
-/* Mobile menu — hidden everywhere by default */
-.mobile-menu {
+.mobile-right {
   display: none;
+  align-items: center;
+  gap: 0.75rem;
+  margin-left: auto;
 }
+
+/* Mobile menu — hidden everywhere by default */
+.mobile-menu { display: none; }
 
 .mobile-link {
   font-size: 0.9rem;
@@ -147,10 +206,9 @@ onUnmounted(() => window.removeEventListener('scroll', onScroll))
 .mobile-link:hover, .mobile-link.active { color: var(--orange); }
 
 @media (max-width: 860px) {
-  .nav-links, .nav-cta { display: none; }
-  .hamburger { display: flex; }
+  .nav-links, .nav-right { display: none; }
+  .mobile-right { display: flex; }
 
-  /* Only show the menu when explicitly open */
   .mobile-menu.open {
     display: flex;
     flex-direction: column;
